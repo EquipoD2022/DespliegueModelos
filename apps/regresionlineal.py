@@ -9,6 +9,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 import plotly.express as px
 import plotly.graph_objects as go
+from sklearn.metrics import classification_report
 
 def app():
     st.title('Model 1 - Regression Lineal')
@@ -82,7 +83,7 @@ def app():
     y_pred = modelo.predict(X_test)
     
     # Ecuación
-    st.subheader('Ecuación de Logistic Regression') 
+    st.subheader('Ecuación de Regresión Lineal') 
     st.write("Coefficients: " + str(modelo.coef_))
     st.write("Intercept: " + str(modelo.intercept_))
     
@@ -105,11 +106,11 @@ def app():
     
     # Evaluación del modelo
     
-    st.title('Evaluación del Modelo Logistic Regression')
+    st.title('Evaluación del Modelo Regresion Lineal')
     ## Matriz de confusión
-    cm = pd.DataFrame(confusion_matrix(y_test, y_pred))
-    st.subheader('Matriz de confusión') 
-    st.write(cm)
+    #cm = pd.DataFrame(confusion_matrix(y_test, y_pred))
+    #st.subheader('Matriz de confusión') 
+    #st.write(cm)
     
 
     ## Métricas
@@ -118,18 +119,24 @@ def app():
     RMSE=np.sqrt(metrics.mean_squared_error(y_test, y_pred))
     
     metricas = {
-        'metrica' : ['Mean Absolute Error', 'Mean Squared Error', 'Root Mean Squared Error'],
+        'metricas' : ['Mean Absolute Error', 'Mean Squared Error', 'Root Mean Squared Error'],
         'valor': [MAE, MSE, RMSE]
     }
     
+
     metricas = pd.DataFrame(metricas)  
     ### Gráfica de las métricas
-    st.subheader('Métricas de rendimiento') 
+    st.subheader(' Grafico Métricas de rendimiento') 
+    
+    st.write("MAE: " + str(MAE))
+    st.write("MSE: " + str(MSE))
+    st.write("RMSE: " + str(RMSE))
+
     fig = px.bar(        
         metricas,
-        x = "metrica",
+        x = "metricas",
         y = "valor",
-        title = "Métricas del Logistic Regression",
-        color="metrica"
+        title = "Métricas de Regresion Lineal",
+        color="metricas"
     )
     st.plotly_chart(fig)
