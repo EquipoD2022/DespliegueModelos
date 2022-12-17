@@ -2,7 +2,7 @@ import streamlit as st
 from multiapp import MultiApp
 
 # import los modelos aqui
-from apps import lsmt, home, regresionlineal, modeloGRU, svr
+from apps import lsmt, home, regresionlineal, modeloGRU, svr, svm
 
 app = MultiApp()
 
@@ -20,7 +20,7 @@ app.add_app("Modelo LSTM", lsmt.app)  # Sebas
 # Juan
 # Edward
 app.add_app("Modelo SVR", svr.app)  # Fernando
-# Angel
+app.add_app("Modelo SVM", svm.app)# Angel
 app.add_app("Modelo Regresión Lineal", regresionlineal.app)  # Vivian
 # Aldair
 
