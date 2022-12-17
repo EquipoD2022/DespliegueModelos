@@ -2,7 +2,7 @@ import streamlit as st
 from multiapp import MultiApp
 
 # import los modelos aqui
-from apps import lsmt, home, regresionlineal, modeloGRU
+from apps import lsmt, home, regresionlineal, modeloGRU, svr
 
 app = MultiApp()
 
@@ -14,12 +14,12 @@ Actividad Semana n°13- Equipo D - Inteligencia de Negocios
 # Add all your application here
 app.add_app("Home", home.app)
 # Albert
-app.add_app("Modelo GRU", modeloGRU.app) #piero
+app.add_app("Modelo GRU", modeloGRU.app)  # piero
 app.add_app("Modelo LSTM", lsmt.app)  # Sebas
 # Rodrigo
 # Juan
 # Edward
-# Fernando
+app.add_app("Modelo SVR", svr.app)  # Fernando
 # Angel
 app.add_app("Modelo Regresión Lineal", regresionlineal.app)  # Vivian
 # Aldair
@@ -27,4 +27,3 @@ app.add_app("Modelo Regresión Lineal", regresionlineal.app)  # Vivian
 
 # The main app
 app.run()
-
