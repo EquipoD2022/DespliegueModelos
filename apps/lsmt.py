@@ -9,6 +9,7 @@ import datetime
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow import keras
 from tensorflow.keras import layers
+import yfinance as yf
 
 # from keras.layers import Dense
 # from keras.layers import LSTM
@@ -28,8 +29,12 @@ def app():
     end = st.date_input("Fin (End)", value=pd.to_datetime("today"))
 
     user_input = st.text_input("Introducir cotización bursátil", "GLD")
-    df = datas.DataReader(user_input, "yahoo", start, end)
-
+    
+    # df = datas.DataReader(user_input, "yahoo", start, end)
+    df = yf.download(user_input, start, end)
+    df.index=df.index.strftime('%Y-%m-%d')
+    df.reset_index(inplace=True)
+    
     st.subheader("Acerca de la empresa")
     st.write(datas.get_quote_yahoo(user_input))
     st.subheader("Datos de la empresa")

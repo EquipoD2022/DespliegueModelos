@@ -9,7 +9,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 import plotly.express as px
 import plotly.graph_objects as go
-from sklearn.metrics import classification_report
+import yfinance as yf
 
 
 def app():
@@ -22,7 +22,10 @@ def app():
 
     user_input = st.text_input("Introducir cotización bursátil", "TSLA")
 
-    df = datas.DataReader(user_input, "yahoo", start, end)
+    # df = datas.DataReader(user_input, "yahoo", start, end)
+    df = yf.download(user_input, start, end)
+    df.index=df.index.strftime('%Y-%m-%d')
+    df.reset_index(inplace=True)
 
     # Describiendo los datos
     st.subheader("Datos del Diciembre - 2021 al Octubre - 2022")

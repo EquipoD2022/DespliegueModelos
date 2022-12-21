@@ -10,6 +10,7 @@ from keras import optimizers
 import pandas_datareader as datas
 from itertools import cycle
 import plotly.express as px
+import yfinance as yf
 
 def app():
     st.title('Modelo GRU')
@@ -20,8 +21,10 @@ def app():
 
     user_input = st.text_input('Introducir simbolo de la empresa en Yahoo Finance ' , 'AMZN')
 
-    df = datas.DataReader(user_input, 'yahoo', start, end)
-    
+    # df = datas.DataReader(user_input, "yahoo", start, end)
+    df = yf.download(user_input, start, end)
+    df.index=df.index.strftime('%Y-%m-%d')
+    df.reset_index(inplace=True)
 
     st.subheader('Tabla de datos historica de la empresa') 
     st.write(df) #Tabla con todos los datos

@@ -16,6 +16,9 @@ plt.style.use('seaborn-darkgrid')
 import warnings
 warnings.filterwarnings("ignore")
 
+# Libreria de yahoo financie
+import yfinance as yf
+
 
 def app():
 
@@ -26,7 +29,14 @@ def app():
     )  # 2021-01-01
     end = st.date_input("Fin (End)", value=pd.to_datetime("today"))
     user_input = st.text_input("Introducir cotización bursátil", "NFLX")
-    df = datas.DataReader(user_input, "yahoo", start, end)
+    # df = datas.DataReader(user_input, "yahoo", start, end)
+    df = yf.download(user_input, start, end)
+    df.index=df.index.strftime('%Y-%m-%d')
+    df.reset_index(inplace=True)
+    
+    
+    
+    
     # Describiendo los datos
     st.subheader("Datos del Diciembre - 2022")
     st.write(df)
