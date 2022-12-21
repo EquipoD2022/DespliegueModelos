@@ -22,7 +22,6 @@ def app():
 
     user_input = st.text_input("Introducir cotización bursátil", "TSLA")
 
-    # df = datas.DataReader(user_input, "yahoo", start, end)
     df = yf.download(user_input, start, end)
     df.index=df.index.strftime('%Y-%m-%d')
     df.reset_index(inplace=True)
