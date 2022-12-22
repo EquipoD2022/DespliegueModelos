@@ -139,7 +139,9 @@ def app():
     st.subheader("Stop Words")
     # Obtención de listado de stopwords del inglés
     st.write("Obtención de listado de stopwords del inglés y Eliminarlos")
+    nltk.download('stopwords')
     from nltk.corpus import stopwords
+    
     # ==============================================================================
     stop_words = list(stopwords.words('english'))
     # Se añade la stoprword: amp, ax, ex
