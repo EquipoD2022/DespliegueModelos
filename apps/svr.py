@@ -9,7 +9,7 @@ import yfinance as yf
 
 def app():
 
-    st.title("Model 7 - SVR Model")
+    st.title("Modelo SVR")
     st.title("Predicción de tendencia de acciones del Mes usando SVR")
     start = st.date_input(
         "Inicio (Start)", value=pd.to_datetime("2022-12-01")

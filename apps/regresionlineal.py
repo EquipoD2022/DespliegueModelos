@@ -15,7 +15,7 @@ from pandas_datareader.yahoo.daily import YahooDailyReader
 
 
 def app():
-    st.title("Model 9 - Regression Lineal")
+    st.title("Modelo Regression Lineal")
 
     yf.pdr_override()
     start = st.date_input("Start", value=pd.to_datetime("2021-12-02"))

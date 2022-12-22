@@ -19,7 +19,7 @@ import yfinance as yf
 
 def app():
 
-    st.title("Model 3 - LSTM Model")
+    st.title("Modelo - LSTM Model")
 
     st.title("Predicción de tendencia de acciones usando LSTM")
 
