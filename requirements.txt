@@ -6,8 +6,11 @@ joblib==0.16.0
 xgboost == 1.5.0
 scikit-learn
 numpy==1.21.5
-yfinance==0.1.54
+#yfinance==0.1.54
+yfinance==0.2.3
 matplotlib==3.5.1
 pandas_datareader==0.10.0
 tensorflow
 keras
+#
+yfinance

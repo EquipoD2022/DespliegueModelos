@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas_datareader as datas
+#import pandas_datareader as datas
+from pandas_datareader import data as pdr
 from sklearn.linear_model import LinearRegression
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix
@@ -10,21 +11,30 @@ from sklearn.metrics import classification_report
 import plotly.express as px
 import plotly.graph_objects as go
 import yfinance as yf
+from pandas_datareader.yahoo.daily import YahooDailyReader
 
 
 def app():
     st.title("Model 9 - Regression Lineal")
 
+    yf.pdr_override()
     start = st.date_input("Start", value=pd.to_datetime("2021-12-02"))
     end = st.date_input("End", value=pd.to_datetime("today"))
 
     st.title("Predicción de tendencia de acciones")
 
     user_input = st.text_input("Introducir cotización bursátil", "TSLA")
+    
+    # 1 Forma
+    # df = datas.DataReader(user_input, "yahoo", start, end)
+    
+    # 2 Forma
+    # df = yf.download(user_input, start, end)
+    # df.index=df.index.strftime('%Y-%m-%d')
+    # df.reset_index(inplace=True)
 
-    df = yf.download(user_input, start, end)
-    df.index=df.index.strftime('%Y-%m-%d')
-    df.reset_index(inplace=True)
+    # 3 Forma
+    df=pdr.get_data_yahoo(user_input,start,end)
 
     # Describiendo los datos
     st.subheader("Datos del Diciembre - 2021 al Octubre - 2022")
