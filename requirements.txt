@@ -17,3 +17,4 @@ keras
 yfinance
 wordcloud==1.8.2.2
 nltk==3.7
+snscrape==0.4.3.20220106
