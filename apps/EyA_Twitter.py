@@ -56,18 +56,22 @@ def app():
     # Distribución temporal de los tweets
     # ==============================================================================
     
-    st.subheader("Número de tweets publicados - Mes")
-    fig, axs = plt.subplots(figsize=(9,4))
+    st.subheader("Número de tweets publicados - Dia")
+    
+    #Parseo de fechas
+    #tweets_df['Fecha de Creacion']=pd.to_datetime(tweets_df['Fecha de Creacion'])
+
+    fig6, ax = plt.subplots(figsize=(9,4))
     
     for Usuario in tweets_df.Usuario.unique():
         df_temp = tweets_df[tweets_df['Usuario'] == Usuario].copy()
-        df_temp['Fecha de Creacion'] = pd.to_datetime(df_temp['Fecha de Creacion'].dt.strftime('%Y-%m'))
+        df_temp['Fecha de Creacion'] = pd.to_datetime(df_temp['Fecha de Creacion'].dt.strftime('%Y-%m-%d'))
         df_temp = df_temp.groupby(df_temp['Fecha de Creacion']).size()
-        df_temp.plot(label=Usuario, ax=axs)
+        df_temp.plot(label=Usuario, ax=ax)
 
-    axs.set_title('Número de tweets publicados por mes')
-    axs.legend()
-    st.pyplot(fig)  
+    ax.set_title('Número de tweets publicados por dia')
+    ax.legend()
+    st.pyplot(fig6)  
     
     # **Limpieza y Tokenizacion**"""
     st.subheader("Limpieza y Tokenización de Data")
